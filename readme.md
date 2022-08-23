@@ -9,50 +9,22 @@ We propose a generic construction of threshold authenticated encryption based on
 
 ## Build Instructions
 
-### Part 1: clone the dependencies               
-Set the parent directory that we will build in
+Linux
 ```
-git clone https://github.com/visa/dise.git
-git clone https://github.com/relic-toolkit/relic.git
-git clone https://github.com/ladnir/cryptoTools
+cmake --preset linux
+cmake --build out/build/linux
 ```
 
-We require the code has the following structure 
+Mac
 ```
-$BUILD_DIR/cryptoTools/
-$BUILD_DIR/dise/
-```
-
-### Part 2: Build and install Relic              
-
-```
-cd relic
-
-cmake . -D MULTI=PTHREAD
-make -j
-sudo make install
+cmake --preset osx
+cmake --build out/build/osx
 ```
 
-On windows you can build relic with `-D MULTI=OPENMP`.
-
-Note, you can install to a non-sudo location by calling `make DESTDIR=<path/to/install> install`
-
-
-### Part 3: build boost and cryptoTools          
+Windows
 ```
-cd ../cryptoTools/thirdparty/linux
-bash boost.get
-cd ../..
-cmake . -D ENABLE_RELIC=ON 
-make -j
+cmake --preset x64-Release
+cmake --build out/build/x64-Release
 ```
 
-
-### Part 4: build DiSE                           
-```
-cd ../dise
-cmake .
-make -j
-```
-
-Run the unit tests `./bin/dEncFrontent -u`.
+Run the unit tests `out/build/<platform>/dEncFrontent /dEncFrontent -u`.
