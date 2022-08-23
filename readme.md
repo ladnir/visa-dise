@@ -27,4 +27,4 @@ cmake --preset x64-Release
 cmake --build out/build/x64-Release
 ```
 
-Run the unit tests `out/build/<platform>/dEncFrontent /dEncFrontent -u`.
+Run the unit tests `out/build/<platform>/dEncFrontent/dEncFrontent -u`.
