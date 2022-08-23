@@ -2,18 +2,10 @@ cmake_minimum_required (VERSION 3.5)
 
 project("dEnc")
 
-
-set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY}/bin)
-set( CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY}/lib)
-set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY}/lib)
-
-
 #############################################
 #            Flag and #defines              #
 #############################################
 add_definitions(-DSOLUTION_DIR=\"${CMAKE_SOURCE_DIR}\")
-set(CMAKE_C_FLAGS "-ffunction-sections -Wall -Wno-strict-aliasing  -maes -msse2 -msse4.1 -mpclmul -Wno-sign-compare -Wfatal-errors -pthread")
-set(CMAKE_CXX_FLAGS  "${CMAKE_C_FLAGS}  -std=c++14 -Wno-ignored-attributes")
 
 # Set a default build type for single-configuration
 # CMake generators if no build type is set.
@@ -39,26 +31,9 @@ endif()
 
 message(STATUS "Option: CMAKE_BUILD_TYPE = ${CMAKE_BUILD_TYPE}\n\tRelease\n\tDebug\n\tRELWITHDEBINFO")
 
-# Select flags.
-SET(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
-SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g -ggdb -rdynamic")
-SET(CMAKE_CXX_FLAGS_DEBUG  "-O0 -g3 -ggdb -rdynamic")
 
-
-#############################################
-#       Library/includes locations          #
-#############################################
-
-include_directories("${CMAKE_SOURCE_DIR}")
-
-# default location for libOTe
-set(CRYPTOTOOLS_DIR "${CMAKE_SOURCE_DIR}/../cryptoTools/" CACHE STRING "location of cryptoTools root")
-
-# default location for Boost
-set(BOOST_ROOT "${CRYPTOTOOLS_DIR}/thirdparty/linux/boost/" CACHE STRING "location of Boost root")
-
-message(STATUS "Option: CRYPTOTOOLS_DIR  = ${CRYPTOTOOLS_DIR}")
-message(STATUS "Option: BOOST_ROOT       = ${BOOST_ROOT}")
+include("${CMAKE_CURRENT_LIST_DIR}/cmake/buildOptions.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/cmake/depHelper.cmake")
 
 #############################################
 #               Build libPSI                 #
