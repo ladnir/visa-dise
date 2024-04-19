@@ -1,6 +1,6 @@
 
 set(GIT_REPOSITORY      https://github.com/ladnir/cryptoTools.git )
-set(GIT_TAG             "84890f04d5a5876daae67b7117f8631db9e26244" )
+set(GIT_TAG             "9cb008981cf3f0f3f1e7a79f07d0d9a7c77b70c9" )
 
 set(CLONE_DIR "${CMAKE_CURRENT_LIST_DIR}/cryptoTools")
 set(BUILD_DIR "${CLONE_DIR}/out/build/${DISE_CONFIG}")
@@ -22,8 +22,11 @@ if(NOT EXISTS ${BUILD_DIR} OR NOT TARGET oc::cryptoTools)
     set(CONFIGURE_CMD ${CMAKE_COMMAND} -S ${CLONE_DIR} -B ${BUILD_DIR} -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
                        -DCMAKE_BUILD_TYPE:STRING=${CMAKE_BUILD_TYPE}
                        -DENABLE_RELIC=ON
+                       -DENABLE_BOOST=ON
                        -DFETCH_RELIC=${FETCH_AUTO}
                        -DFETCH_SPAN_LITE=${FETCH_AUTO}
+                       -DFETCH_LIBDIVIDE=${FETCH_AUTO}
+                       -DFETCH_COPROTO=${FETCH_AUTO}
                        -DFETCH_BOOST=${FETCH_AUTO}
                        ${MP_ARG})
     set(BUILD_CMD     ${CMAKE_COMMAND} --build ${BUILD_DIR} ${CONFIG})
